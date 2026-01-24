@@ -21,7 +21,7 @@ CPP_SRC := $(shell find $(SRC_DIR) -name '*.cpp')
 # =========================
 # PPP (ppclang через Docker)
 # =========================
-PPC_IMAGE := ppclang-legacy-ready
+PPC_IMAGE := ppclang-slim
 
 DOCKER := docker run --rm \
 	--platform linux/amd64 \
