@@ -51,3 +51,6 @@
 
 # debug information files
 *.dwo
+
+#VSCode:
+.vscode
