@@ -8,7 +8,7 @@ ROOT := $(CURDIR)
 TARGET_DIR := stages/$(STAGE)/$(MODE)
 SRC_DIR := $(TARGET_DIR)/src
 BUILD_DIR := $(TARGET_DIR)/build
-BIN := $(BUILD_DIR)/app
+BIN := $(BUILD_DIR)/app.out
 
 # =========================
 # OOP (C++)
