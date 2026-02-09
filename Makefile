@@ -14,7 +14,7 @@ BIN := $(BUILD_DIR)/app.out
 # =========================
 # PPP Containers
 # =========================
-PPSCL_DIR := libs/ppscl
+PPSCL_DIR := libs
 PPSCL_SOURCES := $(shell find $(PPSCL_DIR) -name '*.c')
 PPSCL_INCLUDE := $(addprefix -I,$(shell find $(PPSCL_DIR) -type d))
 
@@ -30,7 +30,7 @@ CPP_SRC := $(shell find $(SRC_DIR) -name '*.cpp')
 # PPClang
 # =========================
 ifeq ($(USE_DOCKER),yes)
-    PPC_IMAGE := ppclang-slim
+    PPC_IMAGE := ppclang-new
     DOCKER := docker run --rm -it \
         --platform linux/amd64 \
         -v $(ROOT):/work \
