@@ -1,4 +1,4 @@
-#include "simulation.c"
+#include "simulation.h"
 
 int main(void) {
     const int UNIT_COUNT = 3;

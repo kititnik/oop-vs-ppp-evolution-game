@@ -1,12 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "unit.c"
-#include "container.h"
-
-typedef struct Tribe {
-    struct ppVector.unit units;
-    int unit_count;
-} Tribe;
+#include "tribe.h"
 
 void tribe_create(Tribe* t, int unit_count) {
     t->unit_count = unit_count;

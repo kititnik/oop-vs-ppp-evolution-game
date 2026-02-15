@@ -1,8 +1,5 @@
 #include <stdio.h>
-
-typedef struct Unit {
-    int id;
-} Unit;
+#include "unit.h"
 
 void unit_act(Unit *unit) {
     printf("Unit %d acts\n", unit->id);

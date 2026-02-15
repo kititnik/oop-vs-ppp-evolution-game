@@ -1,9 +1,4 @@
-#include "tribe.c"
-
-typedef struct Simulation {
-    Tribe tribe;
-    int steps;
-} Simulation;
+#include "simulation.h"
 
 Simulation simulation_create(int unit_count, int steps) {
     Simulation sim;
