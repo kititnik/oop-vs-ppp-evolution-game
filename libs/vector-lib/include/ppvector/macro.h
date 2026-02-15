@@ -23,6 +23,19 @@ vector_name.vec_memory = NULL;
 // {sizeof(vector_name.@), &(vector_name.@),0,0};
 
 //------------------------------------------------------------------------------
+// Макроопределение, используемое для формирования специализации по шаблону в заданную переменную
+// Скрывает дополнительные манипуляции, связанные с установкой
+// внутренних параметров
+#define ppVector_INIT(vector_name)      \
+vector_name.foundation_size = sizeof(vector_name.@);  \
+vector_name.foundation_addr = &(vector_name.@);       \
+vector_name.size = 0;                                 \
+vector_name.capacity = 0;                             \
+vector_name.vec_memory = NULL;
+// struct ppVector.foundation_type vector_name =
+// {sizeof(vector_name.@), &(vector_name.@),0,0};
+
+//------------------------------------------------------------------------------
 // Макрос, используемый для занесения значения в хвост вектора.
 // Обертывает функцию ppVector_push_back и предварительное присваивание
 // пересылаемого значения внутренней переменной
