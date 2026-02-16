@@ -1,3 +1,6 @@
+#ifndef UNIT_H
+#define UNIT_H
+
 class Unit {
 private:
     int _id;
@@ -7,3 +10,4 @@ public:
     void act();
 };
 
+#endif

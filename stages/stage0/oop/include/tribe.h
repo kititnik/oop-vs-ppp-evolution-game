@@ -1,3 +1,6 @@
+#ifndef TRIBE_H
+#define TRIBE_H
+
 #include <vector>
 #include "unit.h"
 
@@ -10,3 +13,4 @@ public:
     void actAll();
 };
 
+#endif
