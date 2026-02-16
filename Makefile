@@ -56,7 +56,7 @@ all: build
 build:
 ifeq ($(MODE),oop)
 	@mkdir -p $(BUILD_DIR)
-	$(CXX) $(CPP_SRC) -o $(BIN) $(CXXFLAGS)
+	$(CXX) $(CPP_SRC) -I$(TARGET_DIR)/include -o $(BIN) $(CXXFLAGS)
 else ifeq ($(MODE),ppp)
 	@mkdir -p $(BUILD_DIR)
 ifeq ($(USE_DOCKER),yes)
