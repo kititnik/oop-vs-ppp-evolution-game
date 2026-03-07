@@ -1,5 +1,5 @@
-#ifndef TRIBE_H
-#define TRIBE_H
+#ifndef __tribe__
+#define __tribe__
 
 #include <vector>
 #include "unit.h"
@@ -13,4 +13,4 @@ public:
     void actAll();
 };
 
-#endif
+#endif // __tribe__

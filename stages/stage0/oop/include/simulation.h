@@ -1,5 +1,5 @@
-#ifndef SIMULATION_H
-#define SIMULATION_H
+#ifndef __simulation__
+#define __simulation__
 
 #include "tribe.h"
 
@@ -13,4 +13,4 @@ public:
     void run();
 };
 
-#endif
+#endif // __simulation__

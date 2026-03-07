@@ -1,5 +1,5 @@
-#ifndef SIMULATION_H
-#define SIMULATION_H
+#ifndef __simulation__
+#define __simulation__
 
 #include "tribe.h"
 
@@ -12,4 +12,4 @@ Simulation simulation_create(int unit_count, int steps);
 void simulation_run(Simulation* sim);
 void simulation_destroy(Simulation* sim);
 
-#endif
+#endif // __container__

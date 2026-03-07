@@ -1,5 +1,5 @@
-#ifndef TRIBE_H
-#define TRIBE_H
+#ifndef __tribe__
+#define __tribe__
 
 #include "unit.h"
 #include "container.h"
@@ -13,4 +13,4 @@ void tribe_create(Tribe* t, int unit_count);
 void tribe_act_all(Tribe* tribe);
 void tribe_destroy(Tribe* tribe);
 
-#endif
+#endif // __tribe__

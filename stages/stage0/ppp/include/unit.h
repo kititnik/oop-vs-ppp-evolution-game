@@ -1,5 +1,5 @@
-#ifndef UNIT_H
-#define UNIT_H
+#ifndef __unit__
+#define __unit__
 
 typedef struct Unit {
     int id;
@@ -7,4 +7,4 @@ typedef struct Unit {
 
 void unit_act(Unit *unit);
 
-#endif
+#endif // __unit__

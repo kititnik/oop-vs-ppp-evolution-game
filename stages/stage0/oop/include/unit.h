@@ -1,5 +1,5 @@
-#ifndef UNIT_H
-#define UNIT_H
+#ifndef __unit__
+#define __unit__
 
 class Unit {
 private:
@@ -10,4 +10,4 @@ public:
     void act();
 };
 
-#endif
+#endif // __unit__
