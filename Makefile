@@ -41,7 +41,7 @@ else
     PPCLANG := ppclang
 endif
 
-PPC_SRC := $(shell find $(SRC_DIR) -name 'main.c')
+PPC_SRC := $(shell find $(SRC_DIR) -name '*.c')
 
 # =========================
 # ОБЩИЕ ЦЕЛИ
@@ -56,13 +56,13 @@ all: build
 build:
 ifeq ($(MODE),oop)
 	@mkdir -p $(BUILD_DIR)
-	$(CXX) $(CPP_SRC) -o $(BIN) $(CXXFLAGS)
+	$(CXX) $(CPP_SRC) -I$(TARGET_DIR)/include -o $(BIN) $(CXXFLAGS)
 else ifeq ($(MODE),ppp)
 	@mkdir -p $(BUILD_DIR)
 ifeq ($(USE_DOCKER),yes)
-	$(DOCKER) bash -i -c "ppclang $(PPC_SRC) $(PPSCL_SOURCES) $(PPSCL_INCLUDE) -o $(BIN)"
+	$(DOCKER) bash -i -c "ppclang $(PPC_SRC) $(PPSCL_SOURCES) $(PPSCL_INCLUDE) -I$(TARGET_DIR)/include -o $(BIN)"
 else
-	ppclang $(PPC_SRC) $(PPSCL_SOURCES) $(PPSCL_INCLUDE) -o $(BIN)
+	ppclang $(PPC_SRC) $(PPSCL_SOURCES) $(PPSCL_INCLUDE) -I$(TARGET_DIR)/include -o $(BIN)
 endif
 else
 	$(error MODE must be oop or ppp)

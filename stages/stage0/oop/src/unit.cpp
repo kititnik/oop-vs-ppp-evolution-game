@@ -1,16 +1,10 @@
 #include <iostream>
+#include "unit.h"
 
-class Unit {
-private:
-    int _id;
+Unit::Unit(int id) {
+    _id = id;
+}
 
-public:
-    Unit(int id) {
-        _id = id;
-    }
-
-    void act() {
-        std::cout << "Unit " << _id << " acts" << std::endl;
-    }
-};
-
+void Unit::act() {
+    std::cout << "Unit " << _id << " acts" << std::endl;
+}
