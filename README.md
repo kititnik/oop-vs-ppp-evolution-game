@@ -20,3 +20,13 @@ make run MODE=oop STAGE=stageN
 make build MODE=ppp STAGE=stageN USE_DOCKER=[yes/no]
 make run MODE=ppp STAGE=stageN USE_DOCKER=[yes/no]
 ```
+
+## Работа над проектом
+### Git
+Примеры правильных заголовков коммитов
+```
+[stage-1][scenario] add stage-1
+[stage-1][oop] upd Unit to virtual act()
+[stage-1][ppp] fix specialization for act()
+[common] upd README.md
+```
