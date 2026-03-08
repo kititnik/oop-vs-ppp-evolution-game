@@ -2,12 +2,13 @@
 #define __unit__
 
 class Unit {
-private:
+protected:
     int _id;
 
 public:
     Unit(int id);
-    void act();
+    virtual void act() = 0;
+    virtual ~Unit() = default;
 };
 
 #endif // __unit__

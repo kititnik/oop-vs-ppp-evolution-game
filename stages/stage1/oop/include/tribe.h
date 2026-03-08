@@ -6,11 +6,12 @@
 
 class Tribe {
 private:
-    std::vector<Unit> _units;
+    std::vector<std::unique_ptr<Unit>> _units;
 
 public:
-    Tribe(int unitCount);
+    Tribe();
     void actAll();
+    void addUnit(std::unique_ptr<Unit> unit);
 };
 
 #endif // __tribe__
