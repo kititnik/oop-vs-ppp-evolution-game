@@ -1,0 +1,155 @@
+stages/{stage0 => stage1}/oop/include/simulation.h |   2 ++
+stages/{stage0 => stage1}/oop/include/tribe.h      |   5 +++--
+stages/{stage0 => stage1}/oop/include/unit.h       |   5 +++--
+/dev/null => stages/stage1/oop/include/warrior.h   |  12 ++++++++++++
+/dev/null => stages/stage1/oop/include/worker.h    |  12 ++++++++++++
+stages/{stage0 => stage1}/oop/src/main.cpp         |   1 +
+stages/{stage0 => stage1}/oop/src/simulation.cpp   |  21 ++++++++++++++++++++-
+stages/{stage0 => stage1}/oop/src/tribe.cpp        |  11 ++++++-----
+stages/{stage0 => stage1}/oop/src/unit.cpp         |   5 -----
+/dev/null => stages/stage1/oop/src/warrior.cpp     |   8 ++++++++
+/dev/null => stages/stage1/oop/src/worker.cpp      |   8 ++++++++
+11 files changed, 75 insertions(+), 15 deletions(-)
+
+diff --color -ru stages/stage0/oop/include/simulation.h stages/stage1/oop/include/simulation.h
+--- stages/stage0/oop/include/simulation.h	2026-03-07 21:50:53
++++ stages/stage1/oop/include/simulation.h	2026-03-08 23:51:55
+@@ -7,10 +7,12 @@
+ private:
+     Tribe _tribe;
+     int _steps;
++    int _unitCount;
+ 
+ public:
+     Simulation(int unitCount, int steps);
+     void run();
++    void createUnits();
+ };
+ 
+ #endif // __simulation__
+\ No newline at end of file
+diff --color -ru stages/stage0/oop/include/tribe.h stages/stage1/oop/include/tribe.h
+--- stages/stage0/oop/include/tribe.h	2026-03-07 21:50:53
++++ stages/stage1/oop/include/tribe.h	2026-03-08 23:51:55
+@@ -6,11 +6,12 @@
+ 
+ class Tribe {
+ private:
+-    std::vector<Unit> _units;
++    std::vector<std::unique_ptr<Unit>> _units;
+ 
+ public:
+-    Tribe(int unitCount);
++    Tribe();
+     void actAll();
++    void addUnit(std::unique_ptr<Unit> unit);
+ };
+ 
+ #endif // __tribe__
+\ No newline at end of file
+diff --color -ru stages/stage0/oop/include/unit.h stages/stage1/oop/include/unit.h
+--- stages/stage0/oop/include/unit.h	2026-03-07 21:50:53
++++ stages/stage1/oop/include/unit.h	2026-03-08 23:51:55
+@@ -2,12 +2,13 @@
+ #define __unit__
+ 
+ class Unit {
+-private:
++protected:
+     int _id;
+ 
+ public:
+     Unit(int id);
+-    void act();
++    virtual void act() = 0;
++    virtual ~Unit() = default;
+ };
+ 
+ #endif // __unit__
+\ No newline at end of file
+Only in stages/stage1/oop/include: warrior.h
+Only in stages/stage1/oop/include: worker.h
+diff --color -ru stages/stage0/oop/src/main.cpp stages/stage1/oop/src/main.cpp
+--- stages/stage0/oop/src/main.cpp	2026-03-07 21:50:53
++++ stages/stage1/oop/src/main.cpp	2026-03-08 23:51:55
+@@ -5,6 +5,7 @@
+   const int STEPS = 5;
+ 
+   Simulation simulation(UNIT_COUNT, STEPS);
++  simulation.createUnits();
+   simulation.run();
+ 
+   return 0;
+diff --color -ru stages/stage0/oop/src/simulation.cpp stages/stage1/oop/src/simulation.cpp
+--- stages/stage0/oop/src/simulation.cpp	2026-03-07 21:50:53
++++ stages/stage1/oop/src/simulation.cpp	2026-03-08 23:51:55
+@@ -1,8 +1,27 @@
+ #include "simulation.h"
++#include "warrior.h"
++#include "worker.h"
+ #include <iostream>
++#include <random>
+ 
+-Simulation::Simulation(int unitCount, int steps) : _tribe(unitCount) {
++Simulation::Simulation(int unitCount, int steps) : _tribe() {
++    _unitCount = unitCount;
+     _steps = steps;
++}
++
++void Simulation::createUnits() {
++    std::random_device dev;
++    std::mt19937 rng(dev());
++    for(int i = 0; i < _unitCount; ++i)
++    {
++        std::uniform_int_distribution<std::mt19937::result_type> dist6(0,1);
++        if(dist6(rng)) {
++            _tribe.addUnit(std::make_unique<Warrior>(i));
++        }
++        else {
++            _tribe.addUnit(std::make_unique<Worker>(i));
++        }
++    }
+ }
+ 
+ void Simulation::run() {
+diff --color -ru stages/stage0/oop/src/tribe.cpp stages/stage1/oop/src/tribe.cpp
+--- stages/stage0/oop/src/tribe.cpp	2026-03-07 21:50:53
++++ stages/stage1/oop/src/tribe.cpp	2026-03-08 23:51:55
+@@ -1,13 +1,14 @@
+ #include "tribe.h"
++#include <utility>
+ 
+-Tribe::Tribe(int unitCount) {
+-    for (int i = 0; i < unitCount; ++i) {
+-        _units.push_back(Unit(i));
+-    }
++Tribe::Tribe() = default;
++
++void Tribe::addUnit(std::unique_ptr<Unit> unit) {
++    _units.push_back(std::move(unit));
+ }
+ 
+ void Tribe::actAll() {
+     for (auto& unit : _units) {
+-        unit.act();
++        unit->act();
+     }
+ }
+\ No newline at end of file
+diff --color -ru stages/stage0/oop/src/unit.cpp stages/stage1/oop/src/unit.cpp
+--- stages/stage0/oop/src/unit.cpp	2026-03-07 21:50:53
++++ stages/stage1/oop/src/unit.cpp	2026-03-08 23:51:55
+@@ -1,10 +1,5 @@
+-#include <iostream>
+ #include "unit.h"
+ 
+ Unit::Unit(int id) {
+     _id = id;
+-}
+-
+-void Unit::act() {
+-    std::cout << "Unit " << _id << " acts" << std::endl;
+ }
+\ No newline at end of file
+Only in stages/stage1/oop/src: warrior.cpp
+Only in stages/stage1/oop/src: worker.cpp

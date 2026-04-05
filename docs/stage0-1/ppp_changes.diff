@@ -1,0 +1,180 @@
+stages/{stage0 => stage1}/ppp/include/container.h  |   4 +++-
+stages/{stage0 => stage1}/ppp/include/simulation.h |   2 ++
+stages/{stage0 => stage1}/ppp/include/tribe.h      |   1 +
+stages/{stage0 => stage1}/ppp/include/unit.h       |  10 ++++++++--
+/dev/null => stages/stage1/ppp/include/warrior.h   |   8 ++++++++
+/dev/null => stages/stage1/ppp/include/worker.h    |   8 ++++++++
+stages/{stage0 => stage1}/ppp/src/main.c           |   5 ++++-
+stages/{stage0 => stage1}/ppp/src/simulation.c     |  20 ++++++++++++++++++++
+stages/{stage0 => stage1}/ppp/src/tribe.c          |  17 ++++++++---------
+stages/{stage0 => stage1}/ppp/src/unit.c           |   6 +++---
+/dev/null => stages/stage1/ppp/src/warrior.c       |   7 +++++++
+/dev/null => stages/stage1/ppp/src/worker.c        |   7 +++++++
+12 files changed, 79 insertions(+), 16 deletions(-)
+
+
+diff --color -ru stages/stage0/ppp/include/container.h stages/stage1/ppp/include/container.h
+--- stages/stage0/ppp/include/container.h	2026-03-07 21:50:53
++++ stages/stage1/ppp/include/container.h	2026-03-08 23:51:55
+@@ -10,6 +10,8 @@
+ //------------------------------------------------------------------------------
+ // Ссылка на описание геометрической фигуры. Знание структуры самой фигуры
+ // для представленной реализации контейнера не требуется
+-ppVector + <unit: Unit;>;
++struct Unit;
++
++ppVector + <unit: Unit*;>;
+ 
+ #endif // __container__
+\ No newline at end of file
+diff --color -ru stages/stage0/ppp/include/simulation.h stages/stage1/ppp/include/simulation.h
+--- stages/stage0/ppp/include/simulation.h	2026-03-07 21:50:53
++++ stages/stage1/ppp/include/simulation.h	2026-03-08 23:51:55
+@@ -6,9 +6,11 @@
+ typedef struct Simulation {
+     Tribe tribe;
+     int steps;
++    int unit_count;
+ } Simulation;
+ 
+ Simulation simulation_create(int unit_count, int steps);
++void simulation_add_units(Simulation* sim);
+ void simulation_run(Simulation* sim);
+ void simulation_destroy(Simulation* sim);
+ 
+diff --color -ru stages/stage0/ppp/include/tribe.h stages/stage1/ppp/include/tribe.h
+--- stages/stage0/ppp/include/tribe.h	2026-03-07 21:50:53
++++ stages/stage1/ppp/include/tribe.h	2026-03-08 23:51:55
+@@ -10,6 +10,7 @@
+ } Tribe;
+ 
+ void tribe_create(Tribe* t, int unit_count);
++void tribe_add(Tribe* t, Unit* unit);
+ void tribe_act_all(Tribe* tribe);
+ void tribe_destroy(Tribe* tribe);
+ 
+diff --color -ru stages/stage0/ppp/include/unit.h stages/stage1/ppp/include/unit.h
+--- stages/stage0/ppp/include/unit.h	2026-03-07 21:50:53
++++ stages/stage1/ppp/include/unit.h	2026-03-08 23:51:55
+@@ -1,10 +1,16 @@
+ #ifndef __unit__
+ #define __unit__
+ 
++#include "worker.h"
++#include "warrior.h"
++
+ typedef struct Unit {
+     int id;
+-} Unit;
++} <> Unit;
+ 
+-void unit_act(Unit *unit);
++void unit_act<Unit *unit>();
++
++Unit + <worker: Worker;>;
++Unit + <warrior: Warrior;>;
+ 
+ #endif // __unit__
+Only in stages/stage1/ppp/include: warrior.h
+Only in stages/stage1/ppp/include: worker.h
+diff --color -ru stages/stage0/ppp/src/main.c stages/stage1/ppp/src/main.c
+--- stages/stage0/ppp/src/main.c	2026-03-07 21:50:53
++++ stages/stage1/ppp/src/main.c	2026-03-08 23:51:55
+@@ -1,10 +1,13 @@
+ #include "simulation.h"
++#include <time.h>
++#include <stdlib.h>
+ 
+ int main(void) {
+     const int UNIT_COUNT = 3;
+     const int STEPS = 5;
+-
++    srand(time(NULL));
+     Simulation sim = simulation_create(UNIT_COUNT, STEPS);
++    simulation_add_units(&sim);
+     simulation_run(&sim);
+     simulation_destroy(&sim);
+ 
+diff --color -ru stages/stage0/ppp/src/simulation.c stages/stage1/ppp/src/simulation.c
+--- stages/stage0/ppp/src/simulation.c	2026-03-07 21:50:53
++++ stages/stage1/ppp/src/simulation.c	2026-03-08 23:51:55
+@@ -1,10 +1,30 @@
+ #include "simulation.h"
++#include "warrior.h"
++#include "worker.h"
++#include <stdlib.h>
+ 
+ Simulation simulation_create(int unit_count, int steps) {
+     Simulation sim;
+     tribe_create(&sim.tribe, unit_count);
+     sim.steps = steps;
++    sim.unit_count = unit_count;
+     return sim;
++}
++
++void simulation_add_units(Simulation* sim) {
++    for(int i = 0; i < sim->unit_count; ++i) {
++        int rand_unit = rand() % 2;
++        if(rand_unit) {
++            Unit* u = create_spec(Unit.worker);
++            u->id = i;
++            tribe_add(&sim->tribe, u);
++        }
++        else {
++            Unit* u = create_spec(Unit.warrior);
++            u->id = i;
++            tribe_add(&sim->tribe, u);
++        }
++    }
+ }
+ 
+ void simulation_run(Simulation* sim) {
+diff --color -ru stages/stage0/ppp/src/tribe.c stages/stage1/ppp/src/tribe.c
+--- stages/stage0/ppp/src/tribe.c	2026-03-07 21:50:53
++++ stages/stage1/ppp/src/tribe.c	2026-03-08 23:51:55
+@@ -3,21 +3,20 @@
+ #include "tribe.h"
+ 
+ void tribe_create(Tribe* t, int unit_count) {
+-    t->unit_count = unit_count;
+-    ppVector_INIT(t->units)
++    t->unit_count = 0;
++    ppVector_INIT(t->units);
++}
+ 
+-    for (int i = 0; i < unit_count; ++i) {
+-        Unit u;
+-        u.id = i;
+-        ppVector_PUSH_BACK(t->units, u)
+-    }
++void tribe_add(Tribe* t, Unit* unit) {
++    ppVector_PUSH_BACK(t->units, unit);
++    t->unit_count++;
+ }
+ 
+ void tribe_act_all(Tribe* tribe) {
+     for (int i = 0; i < tribe->unit_count; ++i) {
+-        Unit u;
++        Unit* u;
+         ppVector_GET_VAL_INDEX(u, tribe->units, i);
+-        unit_act(&u);
++        unit_act<u>();
+     }
+ }
+ 
+diff --color -ru stages/stage0/ppp/src/unit.c stages/stage1/ppp/src/unit.c
+--- stages/stage0/ppp/src/unit.c	2026-03-07 21:50:53
++++ stages/stage1/ppp/src/unit.c	2026-03-08 23:51:55
+@@ -1,6 +1,6 @@
+ #include <stdio.h>
+ #include "unit.h"
+ 
+-void unit_act(Unit *unit) {
+-    printf("Unit %d acts\n", unit->id);
+-}
++void unit_act<Unit *unit>() {
++    // overridden by specializations
++}
+\ No newline at end of file
+Only in stages/stage1/ppp/src: warrior.c
+Only in stages/stage1/ppp/src: worker.c
