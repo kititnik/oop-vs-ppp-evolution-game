@@ -8,7 +8,9 @@
 #include <utility>
 #include <vector>
 
-Tribe::Tribe() = default;
+Tribe::Tribe() {
+    _resourcesCount = 0;
+}
 
 void Tribe::addUnit(std::unique_ptr<Unit> unit) {
     _units.push_back(std::move(unit));
@@ -38,4 +40,12 @@ std::optional<std::reference_wrapper<Unit>> Tribe::getRandomAliveUnit() {
         }
     }
     return std::nullopt;
+}
+
+int Tribe::getResoucesCount() {
+    return _resourcesCount;
+}
+
+void Tribe::setResourcesCount(int resources) {
+    _resourcesCount = std::max(resources, 0);
 }
