@@ -6,7 +6,7 @@
 class Worker : public Unit {
 public:
     Worker(int id);
-    void act() override;
+    void act(SimuationContext& context) override;
 };
 
 #endif // __worker__

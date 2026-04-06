@@ -3,6 +3,6 @@
 
 Worker::Worker(int id) : Unit(id) {}
 
-void Worker::act() {
+void Worker::act(SimuationContext& context) {
     std::cout << "Worker " << _id << " is working\n";
 }

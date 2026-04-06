@@ -5,7 +5,8 @@
 
 class Simulation {
 private:
-    Tribe _tribe;
+    Tribe _tribe1;
+    Tribe _tribe2;
     int _steps;
     int _unitCount;
 

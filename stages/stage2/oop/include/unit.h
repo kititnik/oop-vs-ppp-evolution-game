@@ -1,6 +1,8 @@
 #ifndef __unit__
 #define __unit__
 
+struct SimuationContext;
+
 class Unit {
 protected:
     int _id;
@@ -8,10 +10,11 @@ protected:
 
 public:
     Unit(int id);
-    virtual void act() = 0;
+    virtual void act(SimuationContext& context) = 0;
     bool isAlive();
     void takeDamage(int damage);
     int getHealth();
+    int getId();
     virtual ~Unit() = default;
 };
 

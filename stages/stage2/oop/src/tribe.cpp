@@ -1,4 +1,5 @@
 #include "tribe.h"
+#include "simulation_context.h"
 #include <cstddef>
 #include <cstdlib>
 #include <functional>
@@ -13,9 +14,10 @@ void Tribe::addUnit(std::unique_ptr<Unit> unit) {
     _units.push_back(std::move(unit));
 }
 
-void Tribe::actAll() {
+void Tribe::actAll(SimuationContext& context) {
     for (auto& unit : _units) {
-        unit->act();
+        if(!unit->isAlive()) continue;
+        unit->act(context);
     }
 }
 

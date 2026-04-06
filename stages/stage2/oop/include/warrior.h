@@ -4,9 +4,11 @@
 #include "unit.h"
 
 class Warrior : public Unit {
+private:
+    int _damage;
 public:
     Warrior(int id);
-    void act() override;
+    void act(SimuationContext& context) override;
 };
 
 #endif // __warrior__

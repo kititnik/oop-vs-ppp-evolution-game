@@ -17,3 +17,7 @@ void Unit::takeDamage(int damage) {
 int Unit::getHealth() {
     return _health;
 }
+
+int Unit::getId() {
+    return _id;
+}
