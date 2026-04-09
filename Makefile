@@ -71,7 +71,7 @@ endif
 # =========================
 # ЗАПУСК
 # =========================
-run: build
+run:
 ifeq ($(MODE),oop)
 	./$(BIN)
 else ifeq ($(MODE),ppp)
