@@ -5,7 +5,7 @@
 #include "warrior.h"
 
 typedef struct Unit {
-    int _id;
+    int id;
 } <> Unit;
 
 void unit_act<Unit *unit>();
