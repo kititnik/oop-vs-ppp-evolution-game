@@ -28,6 +28,32 @@ void tribe_act_all(Tribe* tribe) {
     }
 }
 
+Unit* get_random_alive_unit(Tribe* tribe) {
+    int alive_count = 0;
+    for(int i = 0; i < tribe->unit_count; ++i) {
+        Unit* u;
+        ppVector_GET_VAL_INDEX(u, tribe->units, i);
+        if(is_alive(u)) {
+            alive_count++;
+        }
+    }
+    if(alive_count == 0) return NULL;
+
+    int target = rand() % alive_count;
+    for(int i = 0; i < tribe->unit_count; ++i) {
+        Unit* u;
+        ppVector_GET_VAL_INDEX(u, tribe->units, i);
+        if(!is_alive(u)) {
+            continue;
+        }
+        if(target == 0) {
+            return u;
+        }
+        target--;
+    }
+    return NULL;
+}
+
 void tribe_destroy(Tribe* tribe) {
     ppVector_destroy((ppVector*)&tribe->units);
 }

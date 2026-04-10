@@ -4,6 +4,7 @@
 Unit* warrior_create(int id) {
     Unit* u = create_spec(Unit.warrior);
     u->id = id;
+    u->health = 100;
     return u;
 }
 

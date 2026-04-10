@@ -4,6 +4,7 @@
 Unit* worker_create(int id) {
     Unit* u = create_spec(Unit.worker);
     u->id = id;
+    u->health = 100;
     return u;
 }
 
