@@ -1,23 +1,23 @@
 #include "unit.h"
 
 Unit::Unit(int id) {
-    _id = id;
-    _health = 100;
+    this->id = id;
+    this->health = 100;
 }
 
 bool Unit::isAlive() {
-    return (_health > 0);
+    return (health > 0);
 }
 
 void Unit::takeDamage(int damage) {
-    _health -= damage;
-    if(_health < 0) _health = 0;
+    health -= damage;
+    if(health < 0) health = 0;
 }
 
 int Unit::getHealth() {
-    return _health;
+    return health;
 }
 
 int Unit::getId() {
-    return _id;
+    return id;
 }

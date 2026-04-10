@@ -4,8 +4,8 @@
 #include "unit.h"
 
 class Warrior : public Unit {
-private:
-    int _damage;
+public:
+    int damage;
 public:
     Warrior(int id);
     void act(SimuationContext& context) override;

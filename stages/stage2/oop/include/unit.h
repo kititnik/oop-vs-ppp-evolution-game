@@ -4,9 +4,9 @@
 struct SimuationContext;
 
 class Unit {
-protected:
-    int _id;
-    int _health;
+public:
+    int id;
+    int health;
 
 public:
     Unit(int id);
