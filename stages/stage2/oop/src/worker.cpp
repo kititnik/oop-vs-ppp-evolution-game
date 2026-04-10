@@ -11,3 +11,7 @@ void Worker::act(SimuationContext& context) {
     ownTribe.setResourcesCount(foundResources + ownTribe.getResoucesCount());
     std::cout << "Worker " << id << " found: " << foundResources << "; now have " << ownTribe.getResoucesCount() << "\n";
 }
+
+void Worker::acceptAttack(UnitAttacker& attacker) {
+    attacker.attackWorker(*this);
+}

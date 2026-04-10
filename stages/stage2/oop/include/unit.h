@@ -1,6 +1,8 @@
 #ifndef __unit__
 #define __unit__
 
+#include "unit_attacker.h"
+
 struct SimuationContext;
 
 class Unit {
@@ -12,6 +14,7 @@ public:
     Unit(int id);
     virtual void act(SimuationContext& context) = 0;
     bool isAlive();
+    virtual void acceptAttack(UnitAttacker& attacker) = 0;
     void takeDamage(int damage);
     int getHealth();
     int getId();
