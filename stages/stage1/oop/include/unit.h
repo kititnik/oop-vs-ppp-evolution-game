@@ -2,8 +2,8 @@
 #define __unit__
 
 class Unit {
-protected:
-    int _id;
+public:
+    int id;
 
 public:
     Unit(int id);
