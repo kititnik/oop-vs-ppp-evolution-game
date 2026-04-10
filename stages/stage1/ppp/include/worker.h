@@ -1,8 +1,11 @@
 #ifndef __worker__
 #define __worker__
 
-typedef struct Worker Worker;
 typedef struct Unit Unit;
+
+typedef struct Worker {
+    int id;
+} Worker;
 
 Unit* worker_create(int id);
 

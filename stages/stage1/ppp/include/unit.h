@@ -4,9 +4,13 @@
 #include "worker.h"
 #include "warrior.h"
 
-typedef struct Unit Unit;
+typedef struct Unit {
+    int _id;
+} <> Unit;
 
 void unit_act<Unit *unit>();
-int get_id(Unit* unit);
+
+Unit + <worker: Worker;>;
+Unit + <warrior: Warrior;>;
 
 #endif // __unit__

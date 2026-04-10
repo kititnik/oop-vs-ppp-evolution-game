@@ -1,8 +1,11 @@
 #ifndef __warrior__
 #define __warrior__
 
-typedef struct Warrior Warrior;
 typedef struct Unit Unit;
+
+typedef struct Warrior {
+    int id;
+} Warrior;
 
 Unit* warrior_create(int id);
 
