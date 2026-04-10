@@ -5,6 +5,7 @@ typedef struct Unit Unit;
 
 typedef struct Worker {
     int id;
+    int health;
 } Worker;
 
 Unit* worker_create(int id);
