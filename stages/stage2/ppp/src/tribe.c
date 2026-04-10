@@ -1,10 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "tribe.h"
 
-void tribe_create(Tribe* t, int unit_count) {
+struct Tribe {
+    struct ppVector.unit units;
+    int unit_count;
+};
+
+Tribe* tribe_create(int unit_count) {
+    Tribe* t = malloc(sizeof(Tribe));
     t->unit_count = 0;
     ppVector_INIT(t->units);
+    return t;
 }
 
 void tribe_add(Tribe* t, Unit* unit) {
