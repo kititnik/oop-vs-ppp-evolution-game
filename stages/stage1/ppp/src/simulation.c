@@ -3,12 +3,6 @@
 #include "worker.h"
 #include <stdlib.h>
 
-#define type_of(x) _Generic((x), \
-    int: "int", \
-    float: "float", \
-    double: "double", \
-    default: "other")
-
 struct Simulation {
     Tribe* tribe;
     int steps;
