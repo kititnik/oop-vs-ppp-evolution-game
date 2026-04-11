@@ -25,15 +25,17 @@ Simulation* simulation_create(int unit_count, int steps) {
 void simulation_add_units(Simulation* sim) {
     for(int i = 0; i < sim->unit_count; ++i) {
         int rand_unit = rand() % 2;
-        if(rand_unit) {
-            Unit* u = worker_create(i);
-            tribe_add(sim->tribe1, u);
-            tribe_add(sim->tribe2, u);
+        if(rand_unit == 1) {
+            Unit* u1 = worker_create(i);
+            Unit* u2 = worker_create(i+sim->unit_count);
+            tribe_add(sim->tribe1, u1);
+            tribe_add(sim->tribe2, u2);
         }
         else {
-            Unit* u = warrior_create(i);
-            tribe_add(sim->tribe1, u);
-            tribe_add(sim->tribe2, u);
+            Unit* u1 = warrior_create(i);
+            Unit* u2 = warrior_create(i+sim->unit_count);
+            tribe_add(sim->tribe1, u1);
+            tribe_add(sim->tribe2, u2);
         }
     }
 }
@@ -41,14 +43,16 @@ void simulation_add_units(Simulation* sim) {
 void simulation_run(Simulation* sim) {
     for (int step = 0; step < sim->steps; ++step) {
         printf("=== Step %d ===\n", step);
-        SimuationContext* contextTribe1;
-        contextTribe1->own_tribe = sim->tribe1;
-        contextTribe1->enemy_tribe = sim->tribe2;
-        SimuationContext* contextTribe2;
-        contextTribe2->own_tribe = sim->tribe2;
-        contextTribe2->enemy_tribe = sim->tribe1;
-        tribe_act_all(sim->tribe1, contextTribe1);
-        tribe_act_all(sim->tribe2, contextTribe2);
+
+        SimuationContext contextTribe1;
+        contextTribe1.own_tribe = sim->tribe1;
+        contextTribe1.enemy_tribe = sim->tribe2;
+        SimuationContext contextTribe2;
+        contextTribe2.own_tribe = sim->tribe2;
+        contextTribe2.enemy_tribe = sim->tribe1;
+
+        tribe_act_all(sim->tribe1, &contextTribe1);
+        tribe_act_all(sim->tribe2, &contextTribe2);
     }
 }
 

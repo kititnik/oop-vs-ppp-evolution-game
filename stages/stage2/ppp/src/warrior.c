@@ -3,20 +3,22 @@
 #include "tribe.h"
 
 Unit* warrior_create(int id) {
-    Unit* u = create_spec(Unit.warrior);
+    struct Unit.warrior* u = create_spec(Unit.warrior);
     u->id = id;
     u->health = 100;
     u->@damage = 35;
-    return u;
+    return (Unit*)u;
 }
+
+void warrior_attack<Unit* attacker, Unit* target>() {} //= 0;
 
 void unit_act<Unit.warrior* unit>(SimuationContext* context) {
     Unit* target = get_random_alive_unit(context->enemy_tribe);
     if(target == NULL) {
         printf("Warrior %d didn't find enemy to attack\n", unit->id);
-        return;Н
+        return;
     }
-    warrior_attack<unit, target>();
+    warrior_attack<(Unit*)unit, target>();
 }
 
 void warrior_attack<Unit.warrior* attacker, Unit.warrior* target>()
