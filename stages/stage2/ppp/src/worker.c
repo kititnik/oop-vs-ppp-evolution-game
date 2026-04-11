@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "unit.h"
+#include "worker.h"
 
 Unit* worker_create(int id) {
     Unit* u = create_spec(Unit.worker);
@@ -9,6 +9,6 @@ Unit* worker_create(int id) {
 }
 
 
-void unit_act<Unit.worker* unit>() {
+void unit_act<Unit.worker* unit>(SimuationContext* context) {
     printf("Worker %d is working\n", unit->id);
 }

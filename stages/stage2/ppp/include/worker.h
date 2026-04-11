@@ -1,12 +1,14 @@
 #ifndef __worker__
 #define __worker__
 
-typedef struct Unit Unit;
+#include "unit.h"
 
 typedef struct Worker {
     int id;
     int health;
 } Worker;
+
+Unit + <worker: Worker;>;
 
 Unit* worker_create(int id);
 

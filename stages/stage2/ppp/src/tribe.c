@@ -20,11 +20,12 @@ void tribe_add(Tribe* t, Unit* unit) {
     t->unit_count++;
 }
 
-void tribe_act_all(Tribe* tribe) {
+void tribe_act_all(Tribe* tribe, SimuationContext* context) {
     for (int i = 0; i < tribe->unit_count; ++i) {
         Unit* u;
         ppVector_GET_VAL_INDEX(u, tribe->units, i);
-        unit_act<u>();
+        if(!is_alive(u)) continue;
+        unit_act<u>(context);
     }
 }
 

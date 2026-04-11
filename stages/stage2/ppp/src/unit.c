@@ -2,11 +2,11 @@
 
 #include "unit.h"
 
-void unit_act<Unit *unit>() {
+void unit_act<Unit *unit>(SimuationContext* context) {
     // overridden by specializations
 }
 
-bool is_alive(Unit* unit) {
+int is_alive(Unit* unit) {
     return (unit->health > 0);
 }
 
