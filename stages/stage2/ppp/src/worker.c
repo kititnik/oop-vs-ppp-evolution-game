@@ -9,6 +9,6 @@ Unit* worker_create(int id) {
 }
 
 
-void unit_act<Unit.worker* unit>(SimuationContext* context) {
+void unit_act<Unit.worker* unit>(SimulationContext* context) {
     printf("Worker %d is working\n", unit->id);
 }

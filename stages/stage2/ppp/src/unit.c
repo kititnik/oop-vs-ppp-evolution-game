@@ -2,7 +2,7 @@
 
 #include "unit.h"
 
-void unit_act<Unit *unit>(SimuationContext* context) {
+void unit_act<Unit *unit>(SimulationContext* context) {
     // overridden by specializations
 }
 

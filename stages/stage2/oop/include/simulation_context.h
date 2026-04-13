@@ -5,7 +5,7 @@
 
 #include "tribe.h"
 
-struct SimuationContext {
+struct SimulationContext {
     std::reference_wrapper<Tribe> ownTribe;
     std::reference_wrapper<Tribe> enemyTribe;
 };

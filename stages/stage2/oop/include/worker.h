@@ -6,7 +6,7 @@
 class Worker : public Unit {
 public:
     Worker(int id);
-    void act(SimuationContext& context) override;
+    void act(SimulationContext& context) override;
     void acceptAttack(UnitAttacker& attacker) override;
 };
 

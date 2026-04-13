@@ -44,10 +44,10 @@ void simulation_run(Simulation* sim) {
     for (int step = 0; step < sim->steps; ++step) {
         printf("=== Step %d ===\n", step);
 
-        SimuationContext contextTribe1;
+        SimulationContext contextTribe1;
         contextTribe1.own_tribe = sim->tribe1;
         contextTribe1.enemy_tribe = sim->tribe2;
-        SimuationContext contextTribe2;
+        SimulationContext contextTribe2;
         contextTribe2.own_tribe = sim->tribe2;
         contextTribe2.enemy_tribe = sim->tribe1;
 

@@ -16,7 +16,7 @@ void Tribe::addUnit(std::unique_ptr<Unit> unit) {
     _units.push_back(std::move(unit));
 }
 
-void Tribe::actAll(SimuationContext& context) {
+void Tribe::actAll(SimulationContext& context) {
     for (auto& unit : _units) {
         if(!unit->isAlive()) continue;
         unit->act(context);
@@ -42,7 +42,7 @@ std::optional<std::reference_wrapper<Unit>> Tribe::getRandomAliveUnit() {
     return std::nullopt;
 }
 
-int Tribe::getResoucesCount() {
+int Tribe::getResourcesCount() {
     return _resourcesCount;
 }
 

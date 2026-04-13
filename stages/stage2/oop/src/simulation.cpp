@@ -30,8 +30,8 @@ void Simulation::createUnits() {
 void Simulation::run() {
     for (int step = 0; step < _steps; ++step) {
         std::cout << "=== Step " << step << " ===" << std::endl;
-        SimuationContext contextTribe1 = { _tribe1, _tribe2 };
-        SimuationContext contextTribe2 = { _tribe2, _tribe1 };
+        SimulationContext contextTribe1 = { _tribe1, _tribe2 };
+        SimulationContext contextTribe2 = { _tribe2, _tribe1 };
         _tribe1.actAll(contextTribe1);
         _tribe2.actAll(contextTribe2);
     }

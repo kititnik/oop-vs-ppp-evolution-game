@@ -12,7 +12,7 @@ Unit* warrior_create(int id) {
 
 void warrior_attack<Unit* attacker, Unit* target>() {} //= 0;
 
-void unit_act<Unit.warrior* unit>(SimuationContext* context) {
+void unit_act<Unit.warrior* unit>(SimulationContext* context) {
     Unit* target = get_random_alive_unit(context->enemy_tribe);
     if(target == NULL) {
         printf("Warrior %d didn't find enemy to attack\n", unit->id);

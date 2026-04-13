@@ -4,7 +4,7 @@
 #include <vector>
 #include "unit.h"
 
-struct SimuationContext;
+struct SimulationContext;
 
 class Tribe {
 private:
@@ -13,10 +13,10 @@ private:
 
 public:
     Tribe();
-    void actAll(SimuationContext& context);
+    void actAll(SimulationContext& context);
     void addUnit(std::unique_ptr<Unit> unit);
     std::optional<std::reference_wrapper<Unit>> getRandomAliveUnit();
-    int getResoucesCount();
+    int getResourcesCount();
     void setResourcesCount(int resources);
 };
 

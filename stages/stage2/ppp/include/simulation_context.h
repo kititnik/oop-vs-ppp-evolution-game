@@ -3,7 +3,7 @@
 
 typedef struct Tribe Tribe;
 
-struct SimuationContext {
+struct SimulationContext {
     Tribe* own_tribe;
     Tribe* enemy_tribe;
 };

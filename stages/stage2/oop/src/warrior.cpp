@@ -9,7 +9,7 @@ Warrior::Warrior(int id) : Unit(id) {
     damage = 35;
 }
 
-void Warrior::act(SimuationContext& context) {
+void Warrior::act(SimulationContext& context) {
     auto target = context.enemyTribe.get().getRandomAliveUnit();
     if(target == std::nullopt) {
         std::cout << "Warrior " << id << " didn't find enemy to attack\n";

@@ -9,7 +9,7 @@ public:
     int damage;
 public:
     Warrior(int id);
-    void act(SimuationContext& context) override;
+    void act(SimulationContext& context) override;
     void acceptAttack(UnitAttacker& attacker) override;
     void attackWarrior(Warrior& target) override;
     void attackWorker(Worker& targer) override;
