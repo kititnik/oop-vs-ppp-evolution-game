@@ -16,6 +16,7 @@ void Simulation::createUnits() {
     for(int i = 0; i < _unitCount; ++i)
     {
         std::uniform_int_distribution<std::mt19937::result_type> dist6(0,1);
+        // The same type of unit is added to both tribes at once
         if(dist6(rng)) {
             _tribe1.addUnit(std::make_unique<Warrior>(i));
             _tribe2.addUnit(std::make_unique<Warrior>(i+_unitCount));
@@ -30,6 +31,7 @@ void Simulation::createUnits() {
 void Simulation::run() {
     for (int step = 0; step < _steps; ++step) {
         std::cout << "=== Step " << step << " ===" << std::endl;
+        // Create special context for each tribe
         SimulationContext contextTribe1 = { _tribe1, _tribe2 };
         SimulationContext contextTribe2 = { _tribe2, _tribe1 };
         _tribe1.actAll(contextTribe1);

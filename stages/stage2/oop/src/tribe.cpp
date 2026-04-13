@@ -24,6 +24,8 @@ void Tribe::actAll(SimulationContext& context) {
 }
 
 std::optional<std::reference_wrapper<Unit>> Tribe::getRandomAliveUnit() {
+    // Two passes: first we count the live ones, then we go to the desired one.
+    // Does not require an additional buffer.
     size_t aliveCount = 0;
     for (auto& unit : _units) {
         if(unit->isAlive()) {

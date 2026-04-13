@@ -4,6 +4,7 @@
 #include "unit_attacker.h"
 #include "unit.h"
 
+// warrior.h - derived class from Unit with UnitAttacker abilities
 class Warrior : public Unit, public UnitAttacker {
 public:
     int damage;

@@ -3,6 +3,7 @@
 
 #include "unit.h"
 
+// worker.h - derived class from Unit
 class Worker : public Unit {
 public:
     Worker(int id);
