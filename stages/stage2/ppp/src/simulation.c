@@ -25,6 +25,7 @@ Simulation* simulation_create(int unit_count, int steps) {
 void simulation_add_units(Simulation* sim) {
     for(int i = 0; i < sim->unit_count; ++i) {
         int rand_unit = rand() % 2;
+        // The same type of unit is added to both tribes at once
         if(rand_unit == 1) {
             Unit* u1 = worker_create(i);
             Unit* u2 = worker_create(i+sim->unit_count);

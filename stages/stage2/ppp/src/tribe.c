@@ -30,6 +30,8 @@ void tribe_act_all(Tribe* tribe, SimulationContext* context) {
 }
 
 Unit* get_random_alive_unit(Tribe* tribe) {
+    // Two passes: first we count the live ones, then we go to the desired one.
+    // Does not require an additional buffer.
     int alive_count = 0;
     for(int i = 0; i < tribe->unit_count; ++i) {
         Unit* u;

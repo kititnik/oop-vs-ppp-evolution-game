@@ -15,7 +15,7 @@ public:
     Simulation(int unitCount, int steps);
     // start simulation
     void run();
-    // generate and add units to tribe
+    // generate and add units to tribes
     void createUnits();
 };
 

@@ -3,6 +3,7 @@
 
 #include "unit.h"
 
+// worker.h - specialization of Unit
 typedef struct Worker {
     int id;
     int health;

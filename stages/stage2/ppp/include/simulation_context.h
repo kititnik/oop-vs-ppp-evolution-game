@@ -3,6 +3,8 @@
 
 typedef struct Tribe Tribe;
 
+// simulation_context.h - for each tribe contains own and enemy tribe.
+// Context changes every simulation move
 struct SimulationContext {
     Tribe* own_tribe;
     Tribe* enemy_tribe;

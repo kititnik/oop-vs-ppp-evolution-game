@@ -6,6 +6,8 @@
 #include "container.h"
 
 typedef struct SimulationContext SimulationContext;
+
+// tribe.h - a tribe is like a collection of units with common resources(opaque pointer)
 typedef struct Tribe Tribe;
 
 Tribe* tribe_create(int unit_count);
