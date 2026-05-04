@@ -1,12 +1,11 @@
 #include <iostream>
-#include <optional>
 #include "warrior.h"
 #include "simulation_context.h"
 #include "tribe.h"
 #include "worker.h"
 
-Warrior::Warrior(int id) : Unit(id) {
-    damage = 35;
+Warrior::Warrior(int id, int damage) : Unit(id) {
+    this->damage = damage;
 }
 
 void Warrior::act(SimulationContext& context) {

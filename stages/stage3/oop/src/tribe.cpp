@@ -8,7 +8,8 @@
 #include <utility>
 #include <vector>
 
-Tribe::Tribe(std::unique_ptr<BattleStrategy> strategy) : _strategy(std::move(strategy)) {
+Tribe::Tribe(std::unique_ptr<TribeFactory> factory, std::unique_ptr<BattleStrategy> strategy) 
+    : _factory(std::move(factory)), _strategy(std::move(strategy)) {
     _resourcesCount = 0;
 }
 
@@ -20,6 +21,12 @@ void Tribe::actAll(SimulationContext& context) {
     for (auto& unit : _units) {
         if(!unit->isAlive()) continue;
         unit->act(context);
+    }
+}
+
+void Tribe::createUnits(int count, int idOffset) {
+    for (int i = 0; i < count; ++i) {
+        addUnit(_factory->createUnit(idOffset + i));
     }
 }
 

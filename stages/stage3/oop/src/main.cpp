@@ -1,6 +1,7 @@
 #include "simulation.h"
 
 int main() {
+  srand(time(nullptr));
   const int UNIT_COUNT = 3;
   const int STEPS = 5;
 

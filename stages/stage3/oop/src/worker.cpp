@@ -1,4 +1,3 @@
-#include <iostream>
 #include "worker.h"
 #include "simulation_context.h"
 #include "tribe.h"

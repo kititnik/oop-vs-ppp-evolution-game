@@ -1,35 +1,21 @@
 #include "simulation.h"
 #include "simulation_context.h"
-#include "warrior.h"
-#include "worker.h"
+#include "human_factory.h"
+#include "orc_factory.h"
 #include "aggressive_strategy.h"
 #include "random_strategy.h"
 #include <iostream>
-#include <random>
 
 Simulation::Simulation(int unitCount, int steps) 
-    : _tribe1(std::make_unique<RandomStrategy>()), 
-      _tribe2(std::make_unique<AggressiveStrategy>()) {
+    : _tribe1(std::make_unique<HumanFactory>(), std::make_unique<RandomStrategy>()), 
+      _tribe2(std::make_unique<OrcFactory>(), std::make_unique<AggressiveStrategy>()) {
     _unitCount = unitCount;
     _steps = steps;
 }
 
 void Simulation::createUnits() {
-    std::random_device dev;
-    std::mt19937 rng(dev());
-    for(int i = 0; i < _unitCount; ++i)
-    {
-        std::uniform_int_distribution<std::mt19937::result_type> dist6(0,1);
-        // The same type of unit is added to both tribes at once
-        if(dist6(rng)) {
-            _tribe1.addUnit(std::make_unique<Warrior>(i));
-            _tribe2.addUnit(std::make_unique<Warrior>(i+_unitCount));
-        }
-        else {
-            _tribe1.addUnit(std::make_unique<Worker>(i));
-            _tribe2.addUnit(std::make_unique<Worker>(i+_unitCount));
-        }
-    }
+    _tribe1.createUnits(_unitCount, 0);
+    _tribe2.createUnits(_unitCount, _unitCount);
 }
 
 void Simulation::run() {
