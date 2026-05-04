@@ -6,10 +6,7 @@
 Worker::Worker(int id) : Unit(id) {}
 
 void Worker::act(SimulationContext& context) {
-    int foundResources = rand() % 10;
-    auto& ownTribe = context.ownTribe.get();
-    ownTribe.setResourcesCount(foundResources + ownTribe.getResourcesCount());
-    std::cout << "Worker " << id << " found: " << foundResources << "; now have " << ownTribe.getResourcesCount() << "\n";
+    context.ownTribe.get().getStrategy().actWorker(*this, context);
 }
 
 void Worker::acceptAttack(UnitAttacker& attacker) {

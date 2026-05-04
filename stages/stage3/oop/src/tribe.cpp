@@ -8,7 +8,7 @@
 #include <utility>
 #include <vector>
 
-Tribe::Tribe() {
+Tribe::Tribe(std::unique_ptr<BattleStrategy> strategy) : _strategy(std::move(strategy)) {
     _resourcesCount = 0;
 }
 
@@ -44,10 +44,27 @@ std::optional<std::reference_wrapper<Unit>> Tribe::getRandomAliveUnit() {
     return std::nullopt;
 }
 
+std::optional<std::reference_wrapper<Unit>> Tribe::getWeakestAliveUnit() {
+    Unit* weakest = nullptr;
+    int minHealth = INT_MAX;
+    for (auto& unit : _units) {
+        if(unit->isAlive() && unit->getHealth() < minHealth) {
+            minHealth = unit->getHealth();
+            weakest = unit.get();
+        }
+    }
+    if(weakest == nullptr) return std::nullopt;
+    return *weakest;
+}
+
 int Tribe::getResourcesCount() {
     return _resourcesCount;
 }
 
 void Tribe::setResourcesCount(int resources) {
     _resourcesCount = std::max(resources, 0);
+}
+
+BattleStrategy& Tribe::getStrategy() {
+    return *_strategy;
 }

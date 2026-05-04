@@ -10,12 +10,7 @@ Warrior::Warrior(int id) : Unit(id) {
 }
 
 void Warrior::act(SimulationContext& context) {
-    auto target = context.enemyTribe.get().getRandomAliveUnit();
-    if(target == std::nullopt) {
-        std::cout << "Warrior " << id << " didn't find enemy to attack\n";
-        return;
-    }
-    target->get().acceptAttack(*this);
+    context.ownTribe.get().getStrategy().actWarrior(*this, context);
 }
 
 void Warrior::acceptAttack(UnitAttacker& attacker) {

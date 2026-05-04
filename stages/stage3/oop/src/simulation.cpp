@@ -2,10 +2,14 @@
 #include "simulation_context.h"
 #include "warrior.h"
 #include "worker.h"
+#include "aggressive_strategy.h"
+#include "random_strategy.h"
 #include <iostream>
 #include <random>
 
-Simulation::Simulation(int unitCount, int steps) : _tribe1(), _tribe2() {
+Simulation::Simulation(int unitCount, int steps) 
+    : _tribe1(std::make_unique<RandomStrategy>()), 
+      _tribe2(std::make_unique<AggressiveStrategy>()) {
     _unitCount = unitCount;
     _steps = steps;
 }

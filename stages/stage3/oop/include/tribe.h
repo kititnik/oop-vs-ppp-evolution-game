@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "unit.h"
+#include "battle_strategy.h"
 
 struct SimulationContext;
 
@@ -11,14 +12,17 @@ class Tribe {
 private:
     std::vector<std::unique_ptr<Unit>> _units;
     int _resourcesCount;
+    std::unique_ptr<BattleStrategy> _strategy;
 
 public:
-    Tribe();
+    Tribe(std::unique_ptr<BattleStrategy> strategy);
     void actAll(SimulationContext& context);
     void addUnit(std::unique_ptr<Unit> unit);
     std::optional<std::reference_wrapper<Unit>> getRandomAliveUnit();
+    std::optional<std::reference_wrapper<Unit>> getWeakestAliveUnit();
     int getResourcesCount();
     void setResourcesCount(int resources);
+    BattleStrategy& getStrategy();
 };
 
 #endif // __tribe__
