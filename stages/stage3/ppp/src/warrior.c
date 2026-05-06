@@ -3,11 +3,11 @@
 #include "tribe.h"
 #include "battle_strategy.h"
 
-Unit* warrior_create(int id) {
+Unit* warrior_create(int id, int damage) {
     struct Unit.warrior* u = create_spec(Unit.warrior);
     u->id = id;
     u->health = 100;
-    u->@damage = 35;
+    u->@damage = damage;
     return (Unit*)u;
 }
 

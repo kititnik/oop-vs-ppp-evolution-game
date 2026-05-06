@@ -8,11 +8,13 @@ struct Tribe {
     struct ppVector.unit units;
     int unit_count;
     BattleStrategy* strategy;
+    TribeFactory* factory;
 };
 
-Tribe* tribe_create(int unit_count, BattleStrategy* strategy) {
+Tribe* tribe_create(int unit_count, TribeFactory* factory, BattleStrategy* strategy) {
     Tribe* t = malloc(sizeof(Tribe));
     t->unit_count = 0;
+    t->factory = factory;
     t->strategy = strategy;
     ppVector_INIT(t->units);
     return t;
@@ -21,6 +23,13 @@ Tribe* tribe_create(int unit_count, BattleStrategy* strategy) {
 void tribe_add(Tribe* t, Unit* unit) {
     ppVector_PUSH_BACK(t->units, unit);
     t->unit_count++;
+}
+
+void tribe_create_units(Tribe* tribe, int count, int id_offset) {
+    for(int i = 0; i < count; ++i) {
+        Unit* u = factory_create_unit<tribe->factory>(id_offset + i);
+        tribe_add(tribe, u);
+    }
 }
 
 void tribe_act_all(Tribe* tribe, SimulationContext* context) {

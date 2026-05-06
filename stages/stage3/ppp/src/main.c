@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 int main(void) {
+    srand(time(NULL));
     const int UNIT_COUNT = 3;
     const int STEPS = 5;
     srand(time(NULL));

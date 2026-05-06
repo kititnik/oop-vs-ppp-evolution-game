@@ -4,6 +4,8 @@
 #include "worker.h"
 #include "aggressive_strategy.h"
 #include "random_strategy.h"
+#include "human_factory.h"
+#include "orc_factory.h"
 #include <stdlib.h>
 
 struct Simulation {
@@ -15,8 +17,8 @@ struct Simulation {
 
 Simulation* simulation_create(int unit_count, int steps) {
     Simulation* sim = malloc(sizeof(Simulation));
-    Tribe* tribe1 = tribe_create(unit_count, random_strategy_create());
-    Tribe* tribe2 = tribe_create(unit_count, aggressive_strategy_create());
+    Tribe* tribe1 = tribe_create(unit_count, human_factory_create(), random_strategy_create());
+    Tribe* tribe2 = tribe_create(unit_count, orc_factory_create(), aggressive_strategy_create());
     sim->tribe1 = tribe1;
     sim->tribe2 = tribe2;
     sim->steps = steps;
@@ -25,22 +27,9 @@ Simulation* simulation_create(int unit_count, int steps) {
 }
 
 void simulation_add_units(Simulation* sim) {
-    for(int i = 0; i < sim->unit_count; ++i) {
-        int rand_unit = rand() % 2;
-        // The same type of unit is added to both tribes at once
-        if(rand_unit == 1) {
-            Unit* u1 = worker_create(i);
-            Unit* u2 = worker_create(i+sim->unit_count);
-            tribe_add(sim->tribe1, u1);
-            tribe_add(sim->tribe2, u2);
-        }
-        else {
-            Unit* u1 = warrior_create(i);
-            Unit* u2 = warrior_create(i+sim->unit_count);
-            tribe_add(sim->tribe1, u1);
-            tribe_add(sim->tribe2, u2);
-        }
-    }
+    // Each tribe uses its own factory to populate units
+    tribe_create_units(sim->tribe1, sim->unit_count, 0);
+    tribe_create_units(sim->tribe2, sim->unit_count, sim->unit_count);
 }
 
 void simulation_run(Simulation* sim) {

@@ -13,7 +13,7 @@ typedef struct Warrior {
 
 Unit + <warrior: Warrior;>;
 
-Unit* warrior_create(int id);
+Unit* warrior_create(int id, int damage);
 void warrior_attack<Unit* attacker, Unit* target>();
 // multimethod to attack warrior. Damage is halved due to armor
 // damage * 0.5 is an integer truncation
