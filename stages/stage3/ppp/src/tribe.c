@@ -1,16 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 #include "tribe.h"
 
 struct Tribe {
     struct ppVector.unit units;
     int unit_count;
+    BattleStrategy* strategy;
 };
 
-Tribe* tribe_create(int unit_count) {
+Tribe* tribe_create(int unit_count, BattleStrategy* strategy) {
     Tribe* t = malloc(sizeof(Tribe));
     t->unit_count = 0;
+    t->strategy = strategy;
     ppVector_INIT(t->units);
     return t;
 }
@@ -55,6 +58,24 @@ Unit* get_random_alive_unit(Tribe* tribe) {
         target--;
     }
     return NULL;
+}
+
+Unit* get_weakest_alive_unit(Tribe* tribe) {
+    Unit* weakest = NULL;
+    int min_health = INT_MAX;
+    for(int i = 0; i < tribe->unit_count; ++i) {
+        Unit* u;
+        ppVector_GET_VAL_INDEX(u, tribe->units, i);
+        if(is_alive(u) && get_health(u) < min_health) {
+            min_health = get_health(u);
+            weakest = u;
+        }
+    }
+    return weakest;
+}
+
+BattleStrategy* tribe_get_strategy(Tribe* tribe) {
+    return tribe->strategy;
 }
 
 void tribe_destroy(Tribe* tribe) {

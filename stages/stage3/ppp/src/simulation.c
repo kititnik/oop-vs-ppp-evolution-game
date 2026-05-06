@@ -2,6 +2,8 @@
 #include "tribe.h"
 #include "warrior.h"
 #include "worker.h"
+#include "aggressive_strategy.h"
+#include "random_strategy.h"
 #include <stdlib.h>
 
 struct Simulation {
@@ -13,8 +15,8 @@ struct Simulation {
 
 Simulation* simulation_create(int unit_count, int steps) {
     Simulation* sim = malloc(sizeof(Simulation));
-    Tribe* tribe1 = tribe_create(unit_count);
-    Tribe* tribe2 = tribe_create(unit_count);
+    Tribe* tribe1 = tribe_create(unit_count, random_strategy_create());
+    Tribe* tribe2 = tribe_create(unit_count, aggressive_strategy_create());
     sim->tribe1 = tribe1;
     sim->tribe2 = tribe2;
     sim->steps = steps;
