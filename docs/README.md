@@ -17,3 +17,9 @@
 - [Результат diff для ООП](stage2-3/oop_changes.md)
 - [Результат diff для ППП](stage2-3/ppp_changes.md)
 - [Заключение](stage2-3/conclusion.md)
+
+## Метрики
+- [Стадия 0](metrics/stage0.md)
+- [Стадия 1](metrics/stage1.md)
+- [Стадия 2](metrics/stage2.md)
+- [Стадия 3](metrics/stage3.md)
