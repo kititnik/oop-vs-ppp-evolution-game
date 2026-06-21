@@ -6,8 +6,14 @@
 - [Результат diff для ППП](stage0-1/ppp_changes.md)
 - [Заключение](stage0-1/conclusion.md)
 
-## Стадия 0-1
+## Стадия 1-2
 - [Процесс разработки](stage1-2/development.md)
 - [Результат diff для ООП](stage1-2/oop_changes.md)
 - [Результат diff для ППП](stage1-2/ppp_changes.md)
 - [Заключение](stage1-2/conclusion.md)
+
+## Стадия 2-3
+- [Процесс разработки](stage2-3/development.md)
+- [Результат diff для ООП](stage2-3/oop_changes.md)
+- [Результат diff для ППП](stage2-3/ppp_changes.md)
+- [Заключение](stage2-3/conclusion.md)
