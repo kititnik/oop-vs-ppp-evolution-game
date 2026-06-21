@@ -1,6 +1,4 @@
 ```diff
- stages/{stage1 => stage2}/ppp/.DS_Store            | Bin 6148 -> 6148 bytes
- stages/{stage1 => stage2}/ppp/build/app.out        | Bin 32328 -> 32968 bytes
  stages/{stage1 => stage2}/ppp/include/container.h  |   6 ++--
  stages/{stage1 => stage2}/ppp/include/simulation.h |   2 ++
  .../stage2/ppp/include/simulation_context.h        |  13 +++++++
@@ -13,7 +11,7 @@
  stages/{stage1 => stage2}/ppp/src/unit.c           |  15 +++++++-
  stages/{stage1 => stage2}/ppp/src/warrior.c        |  31 +++++++++++++---
  stages/{stage1 => stage2}/ppp/src/worker.c         |   9 ++---
- 14 files changed, 153 insertions(+), 35 deletions(-)
+ 12 files changed, 153 insertions(+), 35 deletions(-)
 
 diff --color -ru stages/stage1/ppp/include/container.h stages/stage2/ppp/include/container.h
 --- stages/stage1/ppp/include/container.h	2026-04-05 22:08:42

@@ -1,6 +1,4 @@
 ```diff
- stages/stage1/oop/build/app => /dev/null           | Bin 36480 -> 0 bytes
- stages/{stage1 => stage2}/oop/build/app.out        | Bin 39752 -> 41288 bytes
  stages/{stage1 => stage2}/oop/include/simulation.h |   6 ++-
  .../stage2/oop/include/simulation_context.h        |  15 +++++++
  stages/{stage1 => stage2}/oop/include/tribe.h      |   9 ++++-
@@ -13,7 +11,7 @@
  stages/{stage1 => stage2}/oop/src/unit.cpp         |  20 ++++++++-
  stages/{stage1 => stage2}/oop/src/warrior.cpp      |  36 +++++++++++++++--
  stages/{stage1 => stage2}/oop/src/worker.cpp       |  15 +++++--
- 14 files changed, 194 insertions(+), 21 deletions(-)
+ 12 files changed, 194 insertions(+), 21 deletions(-)
 
 diff --color -ru stages/stage1/oop/include/simulation.h stages/stage2/oop/include/simulation.h
 --- stages/stage1/oop/include/simulation.h	2026-04-05 22:08:42
