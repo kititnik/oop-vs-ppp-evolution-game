@@ -4,10 +4,10 @@
 
 | Метрики | OOP | PPP | Наилучший |
 |---|---|---|---|
-| SLOC | 111 | 151 | OOP |
+| SLOC | 121 | 155 | OOP |
 | Files | 11 | 12 | OOP |
 
-ΔSLOC% = +36%
+ΔSLOC% = +28%
 
 Инфраструктурный разрыв сохраняется
 
@@ -25,7 +25,7 @@
 | Метрики | OOP | PPP | Наилучший |
 |---|---|---|---|
 | Ce_avg | 1.6 | 1.8 | OOP |
-| Architectural Overhead Ratio | 0% | 8% | OOP |
+| Architectural Overhead Ratio | 0% | 3.9% | OOP |
 | OCP Violation Points | 1 | 1 | — |
 
 Architectural Overhead OOP/PPP = N/A

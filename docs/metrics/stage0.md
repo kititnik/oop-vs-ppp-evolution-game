@@ -4,10 +4,10 @@
 
 | Метрики | OOP | PPP | Наилучший |
 |---|---|---|---|
-| SLOC | 66 | 84 | OOP |
+| SLOC | 72 | 87 | OOP |
 | Files | 7 | 8 | OOP |
 
-ΔSLOC% = +27%
+ΔSLOC% = +21%
 
 PPP стартует с бОльшим объёмом кода из-за инфраструктуры контейнера
 
@@ -20,7 +20,7 @@ N/A
 | Метрики | OOP | PPP | Наилучший |
 |---|---|---|---|
 | Ce_avg | 1.3 | 1.4 | OOP |
-| Architectural Overhead Ratio | 0% | 12% | OOP |
+| Architectural Overhead Ratio | 0% | 5.7% | OOP |
 | OCP Violation Points | N/A | N/A | - |
 
 Отношение инфраструктурного кода ООП к ППП = N/A

@@ -4,10 +4,10 @@
 
 | Метрики | OOP | PPP | Наилучший |
 |---|---|---|---|
-| SLOC | 358 | 376 | OOP |
+| SLOC | 369 | 383 | OOP |
 | Files | 23 | 25 | OOP |
 
-ΔSLOC% = +5%
+ΔSLOC% = +4%
 
 Разрыв увеличился из-за пустых .c файлов для обобщений PPP
 
@@ -25,9 +25,9 @@
 | Метрики | OOP | PPP | Наилучший |
 |---|---|---|---|
 | Ce_avg | 2.8 | 2.5 | PPP |
-| Architectural Overhead Ratio | 22% | 9% | PPP |
+| Architectural Overhead Ratio | 6.2% | 3.7% | PPP |
 | OCP Violation Points | 6 | 1 | PPP |
 
-Architectural Overhead OOP/PPP = ×2.4
+Architectural Overhead OOP/PPP = ×1.7
 
-Для PPP OCP Violation Points не растёт с усложнением архитектуры
+Для PPP **OCP Violation Points** не растёт с усложнением архитектуры

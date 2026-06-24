@@ -18,7 +18,10 @@
 - [Результат diff для ППП](stage2-3/ppp_changes.md)
 - [Заключение](stage2-3/conclusion.md)
 
-## Метрики
+# Метрики
+
+- [Общие показатели](metrics/summary.md)
+- [Описания метрик](metrics/methodology.md)
 - [Стадия 0](metrics/stage0.md)
 - [Стадия 1](metrics/stage1.md)
 - [Стадия 2](metrics/stage2.md)
